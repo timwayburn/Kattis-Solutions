@@ -6,7 +6,7 @@ import java.util.HashMap;
 /**
  * Created by Tim on 01/03/16.
  */
-public class Birds {
+public class Birds( NOT WORKING YET) {
     static Kattio io = new Kattio(System.in);
     public static void main(String[] args) {
 
