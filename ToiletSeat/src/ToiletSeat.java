@@ -13,19 +13,78 @@ import java.util.ArrayList;
  */
 public class ToiletSeat {
     static Kattiotoilet io = new Kattiotoilet(System.in);
-    static ArrayList<Character> characters = new ArrayList<>();
+    static ArrayList<Character> positions = new ArrayList<>();
+    static int case1 = 0;
+    static int case2 = 0;
+    static int case3 = 0;
+    static char initialpos;
+    static char first;
 
     public static void main(String[] args) {
-        String toilet = io.getLine();
-        StringBuilder sb = new StringBuilder();
-        int n = io.getInt();
-        for(int i = 0; i<n; i++){
-            toilet = io.getLine();
-            for(int x = 0; x < toilet.length(); x++){
-                characters.add(toilet.charAt(x));
-            }
+        String toilet = io.getLine(); // The input
+        for(int x = 0; x < toilet.length(); x++) {  // Turn the string into an array of chars
+            positions.add(toilet.charAt(x));
         }
 
+        initialpos = positions.get(0);
+        first = positions.get(1);
+
+        //Case 1, always leave up
+
+        for(int i = 2; i < positions.size(); i++){
+            if(positions.get(i) != 'U') {
+                    case1 += 2;
+            }
+        }
+        if(initialpos == 'D' && first == 'U'){
+            case1 ++;
+        }
+        if(initialpos == 'D' && first == 'D'){
+            case1 ++;
+        }
+        if(initialpos == 'U' && first == 'D'){
+            case1 += 2;
+        }
+
+        //Case 2, always leave down
+
+        for(int i = 2; i < positions.size(); i++){
+            if(positions.get(i) != 'D') {
+                    case2 += 2;
+            }
+        }
+        if(initialpos == 'U' && first == 'D'){
+            case2 ++;
+        }
+        if(initialpos == 'U' && first == 'U'){
+            case2 ++;
+        }
+        if(initialpos == 'D' && first == 'U'){
+            case2 += 2;
+        }
+
+
+        //Case 3, as next wishes
+
+        char lastchar = positions.get(1);
+        for(int i = 2; i < positions.size(); i++){
+            if(positions.get(i) != lastchar) {
+                case3 ++;
+            }
+            lastchar = positions.get(i);
+        }
+        if(initialpos == 'D' && first == 'U'){
+            case3 += 1;
+        }
+        if(initialpos == 'U' && first == 'D'){
+            case3 += 1;
+        }
+
+
+        io.println(case1);
+        io.println(case2);
+        io.println(case3);
+        io.close();
     }
 
 }
