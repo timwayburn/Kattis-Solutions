@@ -27,21 +27,15 @@
  * @author: Kattis, with added getLine by Tim Wayburn.
  */
 
+import java.io.*;
 import java.util.StringTokenizer;
-import java.io.BufferedReader;
-import java.io.BufferedOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.io.OutputStream;
 
-class Kattio extends PrintWriter {
-    public Kattio(InputStream i) {
+class Kattiotoilet extends PrintWriter {
+    public Kattiotoilet(InputStream i) {
         super(new BufferedOutputStream(System.out));
         r = new BufferedReader(new InputStreamReader(i));
     }
-    public Kattio(InputStream i, OutputStream o) {
+    public Kattiotoilet(InputStream i, OutputStream o) {
         super(new BufferedOutputStream(o));
         r = new BufferedReader(new InputStreamReader(i));
     }
