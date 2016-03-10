@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/ColdputerScience/ColdputerScience.iml" filepath="$PROJECT_DIR$/ColdputerScience/ColdputerScience.iml" />
       <module fileurl="file://$PROJECT_DIR$/Kattis-Solutions.iml" filepath="$PROJECT_DIR$/Kattis-Solutions.iml" />
       <module fileurl="file://$PROJECT_DIR$/SymmetricOrder/SymmetricOrder.iml" filepath="$PROJECT_DIR$/SymmetricOrder/SymmetricOrder.iml" />
       <module fileurl="file://$PROJECT_DIR$/ToiletSeat/ToiletSeat.iml" filepath="$PROJECT_DIR$/ToiletSeat/ToiletSeat.iml" />
