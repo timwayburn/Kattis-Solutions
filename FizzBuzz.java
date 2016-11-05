@@ -8,9 +8,9 @@ public class FizzBuzz {
 
         int X = io.getInt();
         int Y = io.getInt();
-        int iterations = io.getInt();
+        int N = io.getInt();
 
-        for(int i = 1; i <= iterations; i++){
+        for(int i = 1; i <= N; i++){
             if((i%X) == 0 && (i%Y) == 0){
                 io.println("FizzBuzz");
             }
