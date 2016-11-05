@@ -1,6 +1,6 @@
 /**
  * Created by Tim on 2016-11-05.
- * Solution to FizzBuzz
+ * Solution to FizzBuzz.
  */
 public class FizzBuzz {
     public static void main(String[] args) {
