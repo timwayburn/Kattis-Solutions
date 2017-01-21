@@ -8,14 +8,14 @@ public class Grasseed {
 
         double cost = io.getDouble();
         double lawns = io.getDouble();
-        double totalcost = 0;
+        double totcost = 0;
 
         for(int i = 0; i < lawns; i++){
             double area = io.getDouble() * io.getDouble();
-            totalcost += (area*cost);
+            totcost += (area*cost);
         }
 
-        io.println(String.format("%.7f", totalcost));
+        io.println(String.format("%.7f", totcost));
         io.close();
     }
 }
