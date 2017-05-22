@@ -19,7 +19,7 @@ public class DaydreamingStockbroker {
       io.println(money);
       io.flush();
       return;
-    }
+    } 
 
     long price = io.getLong();
 
