@@ -11,50 +11,53 @@ import java.util.*;
  */
 public class Tree<T extends Comparable<T>> {
     private TreeNode root;   // First element in list.
+    private static Counter c;
     private int size;  // Number of elements in list.
-
 
     public static void main(String[] args) {
 
         Tree tree1 = new Tree<Integer>();
-        tree1.Insert(10);
-        tree1.Insert(18);
-        tree1.Insert(3);
-        tree1.Insert(9);
-        tree1.Insert(1);
-        System.out.println(tree1.Leaves());
-
-        Tree tree3 = new Tree<Integer>(); // balanced tree
-        tree3.Insert(20);
-        tree3.Insert(15);
-        tree3.Insert(10);
-        tree3.Insert(17);
-        tree3.Insert(5);
-        tree3.Insert(12);
-        tree3.Insert(16);
-        tree3.Insert(19);
-        tree3.Insert(25);
-        tree3.Insert(23);
-        tree3.Insert(30);
-        tree3.Insert(21);
-        tree3.Insert(24);
-        tree3.Insert(27);
-        tree3.Insert(33);
-        System.out.println(tree3.Leaves());
+        Kattiotr io = new Kattiotr(System.in);
+        int go = io.getInt();
+        for (int i = 0; i < go; i++) {
+            int currentint = io.getInt();
+            tree1.add(currentint);
+            io.println(c.count);
+        }
+        io.close();
     }
 
     /**
      * A tree node.
      */
     private class TreeNode {
-        public T data;
+        public int data;
         public TreeNode leftsub; // left subtree of a node.
         public TreeNode rightsub; // right subtree of a node.
 
-        public TreeNode(T data) {
+        public TreeNode(int data) {
             this.data = data;
             this.leftsub = null;
             this.rightsub = null;
+        }
+
+        public boolean add(int data) {
+            if (data == this.data)
+                return false;
+            else if (data < this.data) {
+                if (leftsub == null) {
+                    leftsub = new TreeNode(data);
+                    return true;
+                } else
+                return leftsub.add(data);
+            } else if (data > this.data) {
+                if (rightsub == null) {
+                    rightsub = new TreeNode(data);
+                    return true;
+                } else
+                return rightsub.add(data);
+            }
+            return false;
         }
     }
 
@@ -64,73 +67,6 @@ public class Tree<T extends Comparable<T>> {
     public Tree() {
         root = null;
         size = 0;
-    }
-
-    /**
-     * Test for presence of a value. (Iteratively)
-     * (Worst case Time complexity O(n), searches whole single branch until leaf)
-     */
-    public boolean Search(T t) {
-        TreeNode current = root;
-        boolean iterate = true;
-        if (current == null) {
-            return false;
-        }
-        while (iterate == true) {
-            if (current == null) {
-                System.out.println("Not found.");
-                return false;
-            }
-            if (current.data.compareTo(t) == 0) {
-                System.out.println("Found.");
-                return true;
-            } else if (current.data.compareTo(t) > 0) {
-                current = current.leftsub;
-                System.out.println("gone left.");
-
-            } else if (current.data.compareTo(t) < 0) {
-                current = current.rightsub;
-                System.out.println("gone right.");
-            }
-        }
-        return false;
-    }
-
-
-    /**
-     * Adds value to tree, duplicates are not allowed. (Iteratively)
-     * (Worst case Time complexity O(n), adds at end of one long branch)
-     */
-    public boolean Insert(T t) {
-        TreeNode current = root;
-        boolean iterate = true;
-        if (current == null) {
-            root = new TreeNode(t);
-            size++;
-            return true;
-        }
-        while (iterate == true) {
-            if (current.data.compareTo(t) == 0) {
-                System.out.println("Found Duplicate");
-                return false;
-            } else if (current.data.compareTo(t) > 0) {
-                if (current.leftsub == null) {
-                    current.leftsub = new TreeNode(t);
-                    size++;
-                    return true;
-                }
-                current = current.leftsub;
-
-            } else if (current.data.compareTo(t) < 0) {
-                if (current.rightsub == null) {
-                    current.rightsub = new TreeNode(t);
-                    size++;
-                    return true;
-                }
-                current = current.rightsub;
-            }
-        }
-        return true;
     }
 
 
@@ -175,8 +111,7 @@ public class Tree<T extends Comparable<T>> {
             return 0;
         } else if (node.rightsub == null && node.leftsub == null) {
             return 1;
-        }
-        else if (node.rightsub == null) {
+        } else if (node.rightsub == null) {
             return Leaveshelp(node.leftsub);
         } else if (node.leftsub == null) {
             return Leaveshelp(node.rightsub);
@@ -195,11 +130,12 @@ public class Tree<T extends Comparable<T>> {
         stringbuilder.append("]");
         return stringbuilder.toString();
     }
+
     private void helpToString(TreeNode node, StringBuilder stringbuilder) {
         if (node == null)
             return;
 
-        if (node.leftsub!= null) {
+        if (node.leftsub != null) {
             helpToString(node.leftsub, stringbuilder);
             stringbuilder.append(", ");
         }
@@ -210,6 +146,14 @@ public class Tree<T extends Comparable<T>> {
             stringbuilder.append(", ");
             helpToString(node.rightsub, stringbuilder);
         }
+    }
+
+    public boolean add(int value) {
+        if (root == null) {
+            root = new TreeNode(value);
+            return true;
+        } else
+            return root.add(value);
     }
 }
 
